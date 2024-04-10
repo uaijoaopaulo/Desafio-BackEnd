@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EasyAsyncEnumerable</name>
+    </assembly>
+    <members>
+        <member name="T:EasyAsyncEnumerable.IAsyncEnumerator`1">
+            <summary>
+            Supports an asynchronous iteration over a generic collection.
+            </summary>
+            <typeparam name="T">The type of the objects to enumerate.</typeparam>
+        </member>
+        <member name="M:EasyAsyncEnumerable.IAsyncEnumerator`1.MoveNextAsync(System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously advances the enumerator to the next element of the collection.
+            </summary>
+            <param name="cancellationToken">A cancellation token that can be used to cancel the work.</param>
+            <returns>
+            true if the enumerator was successfully advanced to the next element; 
+            false if the enumerator has passed the end of the collection.
+            </returns>
+        </member>
+        <member name="P:EasyAsyncEnumerable.IAsyncEnumerator`1.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+        </member>
+        <member name="T:EasyAsyncEnumerable.AsyncEnumerable">
+            <summary>
+            Provides a set of static methods for working with objects that implement <see cref="T:EasyAsyncEnumerable.IAsyncEnumerable`1"/>.
+            </summary>
+        </member>
+        <member name="M:EasyAsyncEnumerable.AsyncEnumerable.Create``1(System.Func{EasyAsyncEnumerable.AsyncYielder{``0},System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+            Creates an async enumerable that will be lazy populated by provided producer.
+            </summary>
+            <typeparam name="T">The type of objects to enumerate.</typeparam>
+            <param name="producer">The producer function that will be invoked in order to populate the async enumerable.</param>
+            <returns>An instance of an asynchronous enumerable.</returns>
+        </member>
+        <member name="M:EasyAsyncEnumerable.AsyncEnumerable.Empty``1">
+            <summary>
+            Returns an empty IAsyncEnumerable that has the specified type argument.
+            </summary>
+            <typeparam name="T">The type to assign to the type parameter of the returned generic <see cref="T:EasyAsyncEnumerable.IAsyncEnumerable`1"/>.</typeparam>
+            <returns>An empty <see cref="T:EasyAsyncEnumerable.IAsyncEnumerable`1"/></returns>
+        </member>
+        <member name="M:EasyAsyncEnumerable.AsyncEnumerable.ForEachAsync``1(EasyAsyncEnumerable.IAsyncEnumerable{``0},System.Action{``0})">
+            <summary>
+            Iterates over an async enumerable.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source">Enumerable to be iterated over.</param>
+            <param name="action">Action to be synchronously called at every iteration.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/>.</returns>
+        </member>
+        <member name="M:EasyAsyncEnumerable.AsyncEnumerable.ForEachAsync``1(EasyAsyncEnumerable.IAsyncEnumerable{``0},System.Func{``0,System.Threading.Tasks.Task})">
+            <summary>
+            Iterates over an async enumerable.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source">Enumerable to be iterated over.</param>
+            <param name="action">Action to be called asynchronously at every iteration.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/>.</returns>
+        </member>
+        <member name="M:EasyAsyncEnumerable.AsyncEnumerable.ForEachAsync``1(EasyAsyncEnumerable.IAsyncEnumerable{``0},System.Threading.CancellationToken,System.Func{``0,System.Threading.CancellationToken,System.Threading.Tasks.Task})">
+            <summary>
+            Iterates over an async enumerable.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source">Enumerable to be iterated over.</param>
+            <param name="cancellationToken"></param>
+            <param name="action"></param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/>.</returns>
+        </member>
+        <member name="M:EasyAsyncEnumerable.AsyncEnumerable.ToListAsync``1(EasyAsyncEnumerable.IAsyncEnumerable{``0})">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.List`1"/> from an <see cref="T:EasyAsyncEnumerable.IAsyncEnumerable`1"/>.
+            </summary>
+            <typeparam name="T">The type of the elements of source.</typeparam>
+            <param name="source">The <see cref="T:EasyAsyncEnumerable.IAsyncEnumerable`1"/> to create a <see cref="T:System.Collections.Generic.List`1"/> from.</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> that contains elements from the input sequence.</returns>
+        </member>
+        <member name="M:EasyAsyncEnumerable.AsyncEnumerable.ToEnumerableAsync``1(EasyAsyncEnumerable.IAsyncEnumerable{``0})">
+            <summary>
+            Creates a <see cref="T:System.Collections.Generic.IEnumerable`1"/> from an <see cref="T:EasyAsyncEnumerable.IAsyncEnumerable`1"/>.
+            </summary>
+            <typeparam name="T">The type of the elements of source.</typeparam>
+            <param name="source">The <see cref="T:EasyAsyncEnumerable.IAsyncEnumerable`1"/> to create a <see cref="T:System.Collections.Generic.IEnumerable`1"/> from.</param>
+            <returns>A <see cref="T:System.Collections.Generic.IEnumerable`1"/> that contains elements from the input sequence.</returns>
+        </member>
+        <member name="T:EasyAsyncEnumerable.IAsyncEnumerable`1">
+            <summary>
+            Exposes an async enumerator, which supports a simple asynchronous iteration over a collection of the specified type.
+            </summary>
+            <typeparam name="T">The type of objects to enumerate.</typeparam>
+        </member>
+        <member name="M:EasyAsyncEnumerable.IAsyncEnumerable`1.GetEnumerator">
+            <summary>
+            Returns an async enumerator that asynchronously iterates through the collection.
+            </summary>
+            <returns>An IAsyncEnumerator(T) that can be used to asynchronously iterate over the collection.</returns>
+        </member>
+        <member name="T:EasyAsyncEnumerable.AsyncYielder`1">
+            <summary>
+            Controls the flow of the YieldableAsyncEnumerator class.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:EasyAsyncEnumerable.AsyncYielder`1.Return(`0)">
+            <summary>
+            Enqueues a value to be processed by the iterator.
+            </summary>
+            <param name="value">Value to be enqueued.</param>
+            <returns>An instance of the <see cref="T:EasyAsyncEnumerable.AsyncYielder`1"/> class so further calls can be chained.</returns>
+        </member>
+        <member name="M:EasyAsyncEnumerable.AsyncYielder`1.Break">
+            <summary>
+            Ends the iteration.
+            </summary>
+        </member>
+    </members>
+</doc>
